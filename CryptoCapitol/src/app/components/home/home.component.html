@@ -1,8 +1,63 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>home works!</h3>
-            
+            <h3 class="mb-5">Live Cryptocurrency Prices</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>
+                            Name
+                        </th>
+                        <th class="tdr">
+                            Price
+                        </th>
+                        <th class="tdr">
+                            24h %
+                        </th>
+                        <th class="tdr">
+                            7d %
+                        </th>
+                        <th class="tdr">
+                            Market Cap
+                        </th>
+                        <th class="tdr">
+                            Volume(24h)
+                        </th>
+                        <th class="tdr">
+                            Circulating Supply
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let asset of assets">
+                        <td class="assetLogo"><img [src]="asset.logo_url" height="20px" alt=""></td>
+                        <td>
+                            {{asset.name}} {{asset.symbol}}
+                        </td>
+                        <td class="tdr">
+                            {{asset.price | currency}}
+                        </td>
+                        <td [style] = "asset.d1.price_change_pct>0?'color:#16c784':'color:red'" class="tdr">
+                            {{asset.d1.price_change_pct |  percent: '0.2-2'}}
+                        </td>
+                        <td [style] = "asset.d7.price_change_pct>0?'color:#16c784':'color:red'" class="tdr">
+                            {{asset.d7.price_change_pct |  percent: '0.2-2'}}
+                        </td>
+                        <td class="tdr">
+                            {{asset.market_cap | currency}}
+                        </td>
+                        <td class="tdr">
+                            {{asset.d1.volume  | number}}
+                        </td>
+                        <td class="tdr">
+                            {{asset.circulating_supply | number}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
         </div>
     </div>
 </div>
