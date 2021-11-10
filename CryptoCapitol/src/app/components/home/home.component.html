@@ -57,6 +57,40 @@
                 </tbody>
             </table>
 
+            <h3 class="mb-5">Past Assets From Back End</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Rank
+                        </th>
+                        <th class="tdr">
+                            Price
+                        </th>
+                  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let asset of pastAssets">
+                        <td>
+                            {{asset.name}} {{asset.symbol}}
+                        </td>
+                        <td>
+                            {{asset.rank}}
+                        </td>
+                        <td>
+                            {{asset.price}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
 
         </div>
     </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams  } from '@angular/common/http';
 import { Asset } from '../models/asset';
+import { Observable } from 'rxjs';
+import { AssetBackEnd } from '../models/asset-back-end';
 
 
 @Injectable({
@@ -24,6 +26,11 @@ export class TickerService {
     params = params.append('page', '1');
 
     return this.http.get<Asset[]>(this.url, { params: params })
+  }
+
+  addAsset(assetB: AssetBackEnd): Observable<AssetBackEnd[]> {
+    console.log(assetB.price);
+    return this.http.post<AssetBackEnd[]>("http://localhost:8082/crypto/asset",assetB) as Observable<AssetBackEnd[]>;
   }
 
 

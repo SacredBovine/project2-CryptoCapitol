@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PortfolioComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
