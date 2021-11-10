@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="mb-5">Live Cryptocurrency Prices</h3>
+
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -9,6 +10,7 @@
                         <th>
                             Name
                         </th>
+                        <th style="width:75px;"></th>
                         <th class="tdr">
                             Price
                         </th>
@@ -19,10 +21,10 @@
                             7d %
                         </th>
                         <th class="tdr">
-                            Market Cap
+                            Market Cap <i class='bx bx-info-circle'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Circulating Supply<br>x<br>Current Price<br>(Billions of dollars)"></i>
                         </th>
                         <th class="tdr">
-                            Volume(24h)
+                            Volume(24h) <i class='bx bx-info-circle'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Traded Volume<br>Last 24h<br>(Millions of dollars)"></i>
                         </th>
                         <th class="tdr">
                             Circulating Supply
@@ -30,10 +32,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let asset of assets">
+                    <tr *ngFor="let asset of assets; let rowIndex=index" (mouseover)="visibility[rowIndex]=false;" (mouseout)="visibility[rowIndex]=true;">
                         <td class="assetLogo"><img [src]="asset.logo_url" height="20px" alt=""></td>
+                        <td>{{asset.name}} {{asset.symbol}}</td>
                         <td>
-                            {{asset.name}} {{asset.symbol}}
+                            <ul class="list-group list-group-horizontal">
+                                <li class="list-group-item list-group-item-action"><a href="#" [hidden]="visibility[rowIndex]"> Buy</a></li>
+                            </ul>
                         </td>
                         <td class="tdr">
                             {{asset.price | currency}}
@@ -45,14 +50,15 @@
                             {{asset.d7.price_change_pct |  percent: '0.2-2'}}
                         </td>
                         <td class="tdr">
-                            {{asset.market_cap | currency}}
+                            {{(asset.market_cap)/1000000000 | currency}} B
                         </td>
                         <td class="tdr">
-                            {{asset.d1.volume  | number}}
+                            {{asset.d1.volume/1000000  | currency}} M
                         </td>
                         <td class="tdr">
-                            {{asset.circulating_supply | number}}
+                            {{asset.circulating_supply/1000000 | number}} M {{asset.symbol}}
                         </td>
+                        
                     </tr>
                 </tbody>
             </table>
