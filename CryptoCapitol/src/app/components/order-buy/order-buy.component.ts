@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Asset } from 'src/app/models/asset';
+import { AssetBackEnd } from 'src/app/models/asset-back-end';
+import { Order } from 'src/app/models/order';
+import { OrderBackEnd } from 'src/app/models/order-back-end';
+import { UserBackend } from 'src/app/models/user-backend';
+import { TickerService } from 'src/app/services/ticker.service';
 
 @Component({
   selector: 'app-order-buy',
@@ -10,10 +16,42 @@ export class OrderBuyComponent implements OnInit {
 
   symbol:string = 'BTC'
   userid:number = 1;
+  quantity:number =0;
+  asset!:Asset ;
+  assetB!:AssetBackEnd ;
+  order!:Order;
+  ordersBackEnd: OrderBackEnd[] = [];
 
-  constructor() { }
+  constructor(private tickerService:TickerService) { }
 
   ngOnInit(): void {
+    this.getInfoAsset(this.symbol);
+
+  }
+
+  getInfoAsset(symbol: string) {
+    this.tickerService.getOneAsset(symbol).subscribe(
+      (response:Asset)=>{
+        this.renameKey(response,'1d', 'd1' ) ;
+        this.renameKey(response,'7d', 'd7' ) ;
+        this.asset = response;
+      }
+    )
+  }
+  renameKey ( obj:any, oldKey:string, newKey:string ) {
+    obj[newKey] = obj[oldKey];
+    delete obj[oldKey];
+  }
+
+  buyAsset(){
+    this.assetB = new AssetBackEnd(this.asset.name, this.asset.price,this.asset.rank, this.asset.symbol);
+    this.order = new Order(this.assetB,this.userid,this.quantity);
+    this.tickerService.addOrder(this.order).subscribe(
+      (response:UserBackend)=>{
+        this.ordersBackEnd = response.orders;
+      }
+    )
+
 
   }
 

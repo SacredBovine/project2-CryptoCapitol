@@ -1,1 +1,78 @@
-<p>order-buy works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-5">Order Cryptocurrency</h3>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <th>
+                            Name
+                        </th>
+                        <th style="width:75px;"></th>
+                        <th class="tdr">
+                            Price
+                        </th>
+                        <th class="tdr">
+                            24h %
+                        </th>
+                        <th class="tdr">
+                            7d %
+                        </th>
+                        <th class="tdr">
+                            Market Cap <i class='bx bx-info-circle'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Circulating Supply<br>x<br>Current Price<br>(Billions of dollars)"></i>
+                        </th>
+                        <th class="tdr">
+                            Volume(24h) <i class='bx bx-info-circle'  data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="Traded Volume<br>Last 24h<br>(Millions of dollars)"></i>
+                        </th>
+                        <th class="tdr">
+                            Circulating Supply
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <td class="assetLogo"><img [src]="asset.logo_url" height="20px" alt=""></td>
+                    <td>{{asset.name}} {{asset.symbol}}</td>
+
+                    <td class="tdr">
+                        {{asset.price | currency}}
+                    </td>
+
+                    <td [style] = "asset.d1.price_change_pct>0?'color:#16c784':'color:red'" class="tdr">
+                        {{asset.d1.price_change_pct |  percent: '0.2-2'}}
+                    </td>
+
+                    <td [style] = "asset.d7.price_change_pct>0?'color:#16c784':'color:red'" class="tdr">
+                        {{asset.d7.price_change_pct |  percent: '0.2-2'}}
+                    </td>
+
+                    <td class="tdr">
+                        {{(asset.market_cap)/1000000000 | currency}} B
+                    </td>
+
+                    <td class="tdr">
+                        {{asset.d1.volume/1000000  | currency}} M
+                    </td>
+
+                    <td class="tdr">
+                        {{asset.circulating_supply/1000000 | number}} M {{asset.symbol}}
+                    </td>
+                        
+                    
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+    <form>
+        <div>
+            <label class="label col-sm-3">Quantity: </label>
+            <input type="number" name="cryptoQuantity" [(ngModel)]="quantity" class="form-control" required>
+            <button (click)="buyAsset()" class="btn btn-secondary">Buy</button>
+        </div>
+    </form>
+
+</div>

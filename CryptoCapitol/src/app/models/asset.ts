@@ -24,6 +24,8 @@ export class Asset {
         this.circulating_supply = circulating_supply;
         this.d1 = d1;
         this.d7 = d7;
-    }
+    };
+
+    
     
 }
