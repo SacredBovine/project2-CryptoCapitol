@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <div class="row">
+      <label class="col-sm-2" for="email">Email Address</label>
+      <input class="col-sm-2" id="email" name="email" type="string" [(ngModel)]="email">
+      <label class="col-sm-2" for="password">Password</label>
+      <input class="col-sm-2" id="password" name="password" type="password" [(ngModel)]="password">
+      <button class="btn btn-primary col-sm-4" (click)="login()">Login</button>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="fail">
+        User name or Password incorrect. Please try again.
+     </div>
