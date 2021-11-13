@@ -4,7 +4,8 @@ import { Asset } from '../models/asset';
 import { Order } from '../models/order';
 import { Observable } from 'rxjs';
 import { OrderBackEnd } from '../models/order-back-end';
-import { UserBackend } from '../models/user-backend';
+import { UserBackEnd } from '../models/user-back-end';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,26 +31,23 @@ export class TickerService {
     return this.http.get<Asset[]>(this.url, { params: params })
   }
 
-  getOneAsset(symbol:string){
+  getOneAsset(){
     // Initialize Params Object
     let params = new HttpParams();
 
     // Begin assigning parameters
-    params = params.append('ids', symbol);
+    params = params.append('ids', 'BTC');
     params = params.append('interval', '1d,7d');
     params = params.append('convert', 'USD');
     params = params.append('per-page', '10');
     params = params.append('page', '1');
 
-    return this.http.get<Asset>(this.url, { params: params })
+    return this.http.get<Asset[]>(this.url, { params: params })
   }
 
-  addOrder(order: Order): Observable<UserBackend> {
+  addOrder(order: Order): Observable<UserBackEnd> {
       console.log(order.asset.price);
-      return this.http.post<UserBackend>("http://localhost:8082/crypto/order",order) as Observable<UserBackend>;
+      return this.http.post<UserBackEnd>("http://localhost:8082/crypto/order",order) as Observable<UserBackEnd>;
     }
-
-
- 
 
 }

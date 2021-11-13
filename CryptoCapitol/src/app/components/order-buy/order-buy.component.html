@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <h3 class="mb-5">Order Cryptocurrency</h3>
 
-            <table class="table table-hover">
+            <table class="table table-hover" *ngIf="asset">
                 <thead>
                     <tr>
                         <td></td>
@@ -67,6 +67,7 @@
 
         </div>
     </div>
+
     <form>
         <div>
             <label class="label col-sm-3">Quantity: </label>
@@ -74,5 +75,28 @@
             <button (click)="buyAsset()" class="btn btn-secondary">Buy</button>
         </div>
     </form>
+
+    <div>
+        <h3 class="mb-5">Order History</h3>
+        <table class="table" *ngIf="ordersBackEnd.length">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Asset Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let order of ordersBackEnd">
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td>{{order.asset.name}}</td>
+                    <td>{{order.asset.price}}</td>
+                    <td>{{order.quantity}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 
 </div>

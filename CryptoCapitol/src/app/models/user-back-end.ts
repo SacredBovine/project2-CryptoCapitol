@@ -1,6 +1,6 @@
 import { OrderBackEnd } from "./order-back-end";
 
-export class UserBackend {
+export class UserBackEnd {
 
     public userId: number;
     public userName: string;
