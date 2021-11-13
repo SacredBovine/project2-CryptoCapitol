@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { User } from '../models/user';
 
@@ -10,7 +10,7 @@ import { User } from '../models/user';
 })
 export class LoginComponent implements OnInit {
 
-  public email:string ="";
+  public username:string ="";
   public password:string="";
   public fail:boolean=false;
 
@@ -20,14 +20,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.loginService.login(this.email, this.password).subscribe(
+    this.loginService.login(this.username, this.password).subscribe(
       (data:User)=>{
-        data = new User(data.userId, data.firstName, data.lastName, data.email);
+        this.fail=false;
+        data = new User(data.userId, data.userName, data.firstName, data.lastName, data.email);
         this.loginService.user=data;
+        console.log(this.loginService.user);
+        this.loginService.loggedInStatus = true;
+
       },
       (error)=>{
         this.loginService.user=null;
-
+        this.fail = true;
       }
     )
   }

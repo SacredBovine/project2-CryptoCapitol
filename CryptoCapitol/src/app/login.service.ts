@@ -9,16 +9,30 @@ import { User } from './models/user'
 })
 export class LoginService {
   
-  public user:User|null = null;
+  public user:User|null;
+  public loggedInStatus:boolean = false;
   
-  constructor(private http:HttpClient){ }
+  constructor(private http:HttpClient){
+         this.user = null;
+         this.loggedInStatus = false
+   }
 
-  login(emailIn:string, passwordIn:string):Observable<User> {
+  login(userNameIn:string, passwordIn:string):Observable<User> {
     let loginDto = {
-        email: emailIn,
+        userName: userNameIn,
         password: passwordIn
+    }   
+    let user = this.http.post<any>('http://localhost:8082/crypto/user/login/',loginDto);
+    return user;
+  }
+  logout(){
+    if(this.http.get<any>('http://localhost:8082/crypto/user/login/'))
+    {
+      this.user=null;
+      this.loggedInStatus=false;
     }
-    
-    return this.http.post<any>('http://localhost:8082/crypto/user/login/',loginDto)
+    else{
+      console.log("can't logout");
+    }
   }
 }
