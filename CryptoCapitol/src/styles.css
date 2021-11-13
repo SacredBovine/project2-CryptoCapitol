@@ -4,10 +4,11 @@ body {
    margin:0;
    padding:0;
    height:100%;
+   font-family: Inter, -apple-system, BlinkMacSystemFont, "segoe ui", Roboto, Helvetica, Arial, sans-serif;
 }
 #header{
     border-bottom: 1px solid #efefef;
-    padding: 10px;
+    padding-bottom: 10px;
 }
 #wrapper {
     min-height:100%;
@@ -37,6 +38,8 @@ footer{
     position:absolute;
     bottom:0;
     width:100%;  /* Height of the footer */
+    border-top: 1px solid #efefef;
+    padding-top: 15px;
 }
 footer p{
     font-size: small;

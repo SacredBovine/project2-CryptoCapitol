@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+.form-control {
+  width: 200px;
+}
+
+.help-block {
+  font-size: small;
+}
+
+.input-criteria {
+  font-size: smaller;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.password-criteria {
+  margin-bottom: 0px;
+}
+
+.submit-button {
+  position: absolute;
+  top: 550px;
+}
