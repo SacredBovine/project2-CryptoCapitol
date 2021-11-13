@@ -1,4 +1,7 @@
 <header id="header" class="align-items-center">
+  <div class="news">
+    <app-news></app-news>
+  </div>
     <div class="container pt-1">
       <container-element [ngSwitch]="this.loginService.loggedInStatus">
         <app-login *ngSwitchCase="false"></app-login>
@@ -8,14 +11,15 @@
 </header>
 
 <section id="content" class="mt-5">
+
 <router-outlet></router-outlet>
+
+
 </section>
-<footer>
-        <hr>
+<footer class="mt-5">     
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                   
+                <div class="col-md-12">                   
                     <p>2021 &copy; - All rights and lefts well placed.</p>
                 </div>
             </div>

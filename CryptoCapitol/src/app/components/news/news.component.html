@@ -1,0 +1,8 @@
+<marquee onmouseover="this.stop();" onmouseout="this.start();" >
+   
+    <span *ngFor="let story of news" class="me-5 ms-5 nsp">
+        {{story.title}} <a href="{{story.url}}" target="_blank"><i class='bx bx-link'></i>{{story.author}}</a>
+    </span>
+   
+</marquee>
+
