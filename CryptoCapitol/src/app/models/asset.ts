@@ -1,4 +1,3 @@
-
 import { D1 } from '../models/d1';
 import { D7 } from '../models/d7';
 
@@ -26,4 +25,5 @@ export class Asset {
         this.d7 = d7;
     }
     
+
 }
