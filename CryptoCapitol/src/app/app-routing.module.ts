@@ -8,14 +8,15 @@ import { PastRatesComponent } from './components/past-rates/past-rates.component
 
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: HomeComponent
-  // },
+// {
+//   path: '',
+//   component: HomeComponent
+// },
   {
     path: 'order',
     component: OrderBuyComponent
   },
+  {
     path: 'home',
     component: HomeComponent
   },
