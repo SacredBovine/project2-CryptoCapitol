@@ -7,6 +7,8 @@ import { UserDTO } from '../models/user-dto';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin':'http://localhost:8082/',
+    'withCredentials':'true'
   }),
 };
 
@@ -32,7 +34,7 @@ export class UserService {
         userName: userNameIn,
         password: passwordIn
     }   
-    let user = this.http.post<any>(this.backendUrl+'/login/',loginDto);
+    let user = this.http.post<any>(this.backendUrl+'/login/',loginDto, httpOptions );
     return user;
   }
   
