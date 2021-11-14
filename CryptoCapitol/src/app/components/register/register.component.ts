@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { UserDTO } from 'src/app/models/user-dto';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,16 +10,21 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   userData = new UserDTO('', '', '', '', '');
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private host: ElementRef<HTMLElement>) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: any, formData: any) {
     this.registerUser(formData);
     form.reset();
+    this.closeOnReg();
   }
 
   registerUser(user: UserDTO) {
     this.userService.addUser(user).subscribe();
+  }
+
+  closeOnReg(){
+    this.host.nativeElement.remove();
   }
 }
