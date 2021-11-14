@@ -13,7 +13,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
   logout(){
-    this.userService.logout();
+    this.userService.logout().subscribe(
+        (data:any)=>{
+          this.userService.user = null;
+          this.userService.loggedInStatus = false;
+        },
+        (error)=>{
+          console.log('there was an error logging out');
+        }
+      )
   }
-
 }

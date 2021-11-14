@@ -1,15 +1,16 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { UserDTO } from '../models/user-dto';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin':'http://localhost:8082/',
-    'withCredentials':'true'
+    'Access-Control-Allow-Origin': 'http://localhost:8082/',
   }),
+  withCredentials:true
 };
 
 @Injectable({
@@ -25,7 +26,7 @@ export class UserService {
     this.loggedInStatus = false
   }
 
-  addUser(userDto: UserDTO): Observable<UserDTO> {
+  addUser(userDto: UserDTO): Observable<any> {
     return this.http.post<UserDTO>(this.backendUrl, userDto, httpOptions)
   }
 
@@ -34,18 +35,16 @@ export class UserService {
         userName: userNameIn,
         password: passwordIn
     }   
-    let user = this.http.post<any>(this.backendUrl+'/login/',loginDto, httpOptions );
-    return user;
+    return this.http.post<any>(this.backendUrl+'/login/',loginDto, httpOptions ) as Observable<User>;
   }
   
-  logout(){
-    if(this.http.get<any>(this.backendUrl+'/login/', httpOptions))
-    {
-      this.user=null;
-      this.loggedInStatus=false;
-    }
-    else{
-      console.log("can't logout");
-    }
+  logout(): Observable<any> {
+    this.user=null;
+    return this.http.get(this.backendUrl+'/logout',httpOptions) as Observable<any>;
+  
+  }
+
+  sendLogout(){
+    this.http.get(this.backendUrl+'/login/',httpOptions);
   }
 }

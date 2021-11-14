@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { AssetBackEnd } from 'src/app/models/asset-back-end';
 import { Order } from 'src/app/models/order';
 import { OrderBackEnd } from 'src/app/models/order-back-end';
 import { UserBackEnd } from 'src/app/models/user-back-end';
 import { TickerService } from 'src/app/services/ticker.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-order-buy',
@@ -22,11 +23,15 @@ export class OrderBuyComponent implements OnInit {
   order:Order|null=null ;
   ordersBackEnd: OrderBackEnd[] = [];
 
-  constructor(private tickerService:TickerService) { }
+  constructor(private tickerService:TickerService,
+    private host: ElementRef<HTMLElement>,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+    if (this.userService.loggedInStatus ==false){
+      this.closeOnNoSession();
+    }
     this.getInfoAsset();
-
   }
 
   getInfoAsset() {
@@ -56,7 +61,10 @@ export class OrderBuyComponent implements OnInit {
         console.log(this.ordersBackEnd[0].id);
       }
     )
+  }
 
+  closeOnNoSession(){
+    this.host.nativeElement.remove();
   }
 
 }
