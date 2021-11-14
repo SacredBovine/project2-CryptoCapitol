@@ -39,7 +39,7 @@ export class UserService {
   }
   
   logout(){
-    if(this.http.get<any>(this.backendUrl+'/login/'))
+    if(this.http.get<any>(this.backendUrl+'/login/', httpOptions))
     {
       this.user=null;
       this.loggedInStatus=false;
