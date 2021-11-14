@@ -5,6 +5,7 @@ import { OrderBuyComponent } from './components/order-buy/order-buy.component';
 import {LoginComponent } from './login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PastRatesComponent } from './components/past-rates/past-rates.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 

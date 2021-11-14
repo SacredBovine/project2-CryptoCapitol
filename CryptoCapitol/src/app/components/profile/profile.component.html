@@ -1,0 +1,29 @@
+<div class="container" *ngIf="userService.loggedInStatus">
+  <div *ngIf="!editProfile else Edit;">
+    <h3>Profile</h3>
+  </div>
+  <ng-template #Edit>
+    <h3>Edit Your Profile</h3>
+  </ng-template>
+  <div>
+    <button
+      *ngIf="!editProfile; else Cancel"
+      type="button"
+      class="btn btn-primary toggle-edit"
+      id="toggle-edit"
+      (click)="onToggle()"
+    >
+      Edit Profile
+    </button>
+    <ng-template #Cancel>
+      <button
+        type="button"
+        class="btn btn-secondary toggle-edit"
+        id="toggle-edit"
+        (click)="onToggle()"
+      >
+        Cancel
+      </button>
+    </ng-template>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './models/globals';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -26,7 +27,8 @@ import { Globals } from './models/globals';
     OrderBuyComponent,
     PastRatesComponent,
     NewsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
