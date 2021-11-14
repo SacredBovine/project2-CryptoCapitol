@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Globals } from '../../models/globals';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +10,7 @@ export class ProfileComponent implements OnInit {
   editProfile: boolean = false;
   userService: UserService;
 
-  constructor(userService: UserService, globals: Globals) {
+  constructor(userService: UserService) {
     this.userService = userService;
   }
 
