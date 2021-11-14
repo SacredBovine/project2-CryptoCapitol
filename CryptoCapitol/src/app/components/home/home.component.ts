@@ -1,8 +1,9 @@
-import { LoginService } from 'src/app/login.service';
+
 import { Component, OnInit, Inject, Renderer2  } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { TickerService } from 'src/app/services/ticker.service';
 import { DOCUMENT } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
   assets:Asset[] = [];
   visibility:boolean[] = [];
 
-  constructor(private tickerService:TickerService, @Inject(DOCUMENT) private _document:Document, private _renderer2: Renderer2) { }
+  constructor(private tickerService:TickerService, @Inject(DOCUMENT) private _document:Document, private _renderer2: Renderer2, private userService:UserService) { }
 
 
   ngOnInit(): void {
