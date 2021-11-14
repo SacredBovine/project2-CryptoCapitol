@@ -13,6 +13,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { Globals } from './models/globals';
 
 
 
@@ -35,7 +36,7 @@ import { FormsModule } from '@angular/forms';
     ChartsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,17 +8,13 @@ import { PastRatesComponent } from './components/past-rates/past-rates.component
 
 
 const routes: Routes = [
-// {
-//   path: '',
-//   component: HomeComponent
-// },
   {
-    path: 'order',
-    component: OrderBuyComponent
+    path: '',
+    component: HomeComponent
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'buy',
+    component: OrderBuyComponent
   },
   {
     path: 'login',

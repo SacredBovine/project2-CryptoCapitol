@@ -1,6 +1,8 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { User } from '../models/user';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+import { Globals } from '../models/globals';
+
 
 
 @Component({
@@ -14,23 +16,22 @@ export class LoginComponent implements OnInit {
   public password:string="";
   public fail:boolean=false;
 
-  constructor(private loginService:LoginService) { }
+  constructor(private userService:UserService , private globals: Globals) { }
 
   ngOnInit(): void {
   }
 
   login(){
-    this.loginService.login(this.username, this.password).subscribe(
+    this.userService.login(this.username, this.password).subscribe(
       (data:User)=>{
         this.fail=false;
         data = new User(data.userId, data.userName, data.firstName, data.lastName, data.email);
-        this.loginService.user=data;
-        console.log(this.loginService.user);
-        this.loginService.loggedInStatus = true;
-
+        this.userService.user=data;
+        this.userService.loggedInStatus = true;
+        this.globals.loggedIn = true;
       },
       (error)=>{
-        this.loginService.user=null;
+        this.userService.user=null;
         this.fail = true;
       }
     )
