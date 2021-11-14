@@ -28,9 +28,6 @@ export class OrderBuyComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-    if (this.userService.loggedInStatus ==false){
-      this.closeOnNoSession();
-    }
     this.getInfoAsset();
   }
 
@@ -62,9 +59,4 @@ export class OrderBuyComponent implements OnInit {
       }
     )
   }
-
-  closeOnNoSession(){
-    this.host.nativeElement.remove();
-  }
-
 }

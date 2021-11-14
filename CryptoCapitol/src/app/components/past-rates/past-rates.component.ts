@@ -77,13 +77,9 @@ export class PastRatesComponent implements OnInit {
 
   constructor(private pastRates:PastRatesService, 
     private route: ActivatedRoute,
-    private userService:UserService, 
-    private host: ElementRef<HTMLElement>) { }
+    private userService:UserService) { }
 
   ngOnInit(): void {
-    if (this.userService.loggedInStatus ==false){
-      this.closeOnNoSession();
-    }
     this.route.queryParams
       .subscribe(params => {
         this.symbol = params.symbol;
@@ -122,7 +118,4 @@ export class PastRatesComponent implements OnInit {
     console.log(event, active);
   }
 
-  closeOnNoSession(){
-    this.host.nativeElement.remove();
-  }
 }

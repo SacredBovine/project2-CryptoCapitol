@@ -5,6 +5,7 @@ import { OrderBuyComponent } from './components/order-buy/order-buy.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PastRatesComponent } from './components/past-rates/past-rates.component';
+import { NavAuthService } from './services/nav-auth.service';
 
 
 const routes: Routes = [
@@ -14,10 +15,12 @@ const routes: Routes = [
 // },
   {
     path: 'order',
+    canActivate: [NavAuthService],
     component: OrderBuyComponent
   },
   {
     path: 'home',
+    canActivate: [NavAuthService],
     component: HomeComponent
   },
   {
@@ -26,6 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'history',
+    canActivate: [NavAuthService],
     component: PastRatesComponent
   },
   {

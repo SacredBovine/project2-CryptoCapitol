@@ -1,5 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Inject, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { NavAuthService } from 'src/app/services/nav-auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   public password:string="";
   public fail:boolean=false;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private navService: NavAuthService) { }
 
   ngOnInit(): void {
   }

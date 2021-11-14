@@ -13,22 +13,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-
-
   assets:Asset[] = [];
   visibility:boolean[] = [];
 
   constructor(private tickerService:TickerService, 
     @Inject(DOCUMENT) private _document:Document, 
     private _renderer2: Renderer2, 
-    private userService:UserService, 
-    private host: ElementRef<HTMLElement>) { }
+    private userService:UserService) { }
 
 
   ngOnInit(): void {
-    if (this.userService.loggedInStatus ==false){
-      this.closeOnNoSession();
-    }
+   // console.log(this.userService.user);
     this.getAssets();
     this.fillVisibility();
     let script = this._renderer2.createElement('script');
@@ -62,9 +57,5 @@ export class HomeComponent implements OnInit {
   renameKey ( obj:any, oldKey:string, newKey:string ) {
     obj[newKey] = obj[oldKey];
     delete obj[oldKey];
-  }
-
-  closeOnNoSession(){
-    this.host.nativeElement.remove();
   }
 }
