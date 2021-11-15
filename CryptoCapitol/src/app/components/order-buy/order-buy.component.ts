@@ -6,6 +6,7 @@ import { Order } from 'src/app/models/order';
 import { OrderBackEnd } from 'src/app/models/order-back-end';
 import { UserBackEnd } from 'src/app/models/user-back-end';
 import { TickerService } from 'src/app/services/ticker.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-order-buy',
@@ -25,7 +26,11 @@ export class OrderBuyComponent implements OnInit {
   ordersBackEnd: OrderBackEnd[] = [];
   resultClass:string = "hidden";
   isdisable:boolean = false;
-  constructor(private tickerService:TickerService, private route: ActivatedRoute) { }
+  constructor(private tickerService:TickerService, private route: ActivatedRoute , public userService: UserService) { 
+    if(userService.user != null){
+      this.userid = userService.user.userId
+    }
+  }
 
   ngOnInit(): void {
     this.route.queryParams
