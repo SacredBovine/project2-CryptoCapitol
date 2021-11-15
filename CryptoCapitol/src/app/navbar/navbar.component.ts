@@ -1,6 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { Globals } from '../models/globals';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -9,19 +7,21 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  globals: Globals;
 
-  constructor(private loginService:LoginService, private userService:UserService, globals: Globals) { 
-    this.globals = globals;
-  }
+  constructor(private userService:UserService) { }
 
-  
-  
   ngOnInit(): void {
-    
+    console.log(this.userService.user);
   }
   logout(){
-    this.loginService.logout();
+    this.userService.logout().subscribe(
+        (data:any)=>{
+          this.userService.user = null;
+          this.userService.loggedInStatus = false;
+        },
+        (error)=>{
+          console.log('there was an error logging out');
+        }
+      )
   }
-
 }

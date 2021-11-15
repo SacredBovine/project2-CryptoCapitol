@@ -34,16 +34,13 @@ export class UserService {
         userName: userNameIn,
         password: passwordIn
     }   
-    return this.http.post<any>(this.backendUrl+'/login/',loginDto/*, httpOptions*/ ) as Observable<User>;
+    return this.http.post<any>(this.backendUrl+'/login/',loginDto, httpOptions) as Observable<User>;
   }
   
   logout(): Observable<any> {
     this.user=null;
+    this.loggedInStatus= false;
     return this.http.get(this.backendUrl+'/logout',httpOptions) as Observable<any>;
-  
   }
 
-  sendLogout(){
-    this.http.get(this.backendUrl+'/login/',httpOptions);
-  }
 }

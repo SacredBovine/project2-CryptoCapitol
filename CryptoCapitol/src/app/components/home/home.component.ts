@@ -1,4 +1,4 @@
-import { LoginService } from 'src/app/login.service';
+
 import { Component, OnInit, Inject, Renderer2  } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { TickerService } from 'src/app/services/ticker.service';
@@ -11,8 +11,6 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-
 
   assets:Asset[] = [];
   visibility:boolean[] = [];
