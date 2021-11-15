@@ -1,3 +1,8 @@
+#btn-cancel {
+  position: absolute;
+  top: 255px;
+}
+
 .container {
   position: relative;
 }
@@ -14,7 +19,11 @@ input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
+.profile-line {
+  margin-bottom: 8px;
+}
+
 .submit-button {
   position: absolute;
-  top: 350px;
+  top: 300px;
 }

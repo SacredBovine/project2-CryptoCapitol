@@ -2,13 +2,13 @@
   <div *ngIf="!editProfile; else Edit">
     <h3>Profile</h3>
     <div class="user-profile">
-      <p>{{ userService.user?.firstName }} {{ userService.user?.lastName }}</p>
+      <p class="profile-line">{{ userService.user?.firstName }} {{ userService.user?.lastName }}</p>
       <p>{{ userService.user?.email }}</p>
     </div>
     <button
       type="button"
       class="btn btn-primary toggle-edit"
-      id="toggle-edit"
+      id="btn-edit"
       (click)="onToggle()"
     >
       Edit Profile
@@ -47,6 +47,7 @@
           class="form-control"
           name="email"
           id="email"
+          pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
           [(ngModel)]="userData.email"
           #email="ngModel"
           required
@@ -65,7 +66,7 @@
     <button
       type="button"
       class="btn btn-secondary toggle-edit"
-      id="toggle-edit"
+      id="btn-cancel"
       (click)="onToggle()"
     >
       Cancel
