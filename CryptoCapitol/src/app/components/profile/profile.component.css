@@ -1,0 +1,20 @@
+.container {
+  position: relative;
+}
+
+.form-control {
+  width: 200px;
+}
+
+.help-block {
+  font-size: small;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.submit-button {
+  position: absolute;
+  top: 350px;
+}

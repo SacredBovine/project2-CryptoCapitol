@@ -6,8 +6,8 @@ import { UserDTO } from '../models/user-dto';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'/*,
-    'Access-Control-Allow-Origin': 'http://localhost:8082/',*/
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'http://localhost:8082/crypto/user',
   }),
   withCredentials:true
 };
@@ -26,21 +26,25 @@ export class UserService {
   }
 
   addUser(userDto: UserDTO): Observable<any> {
-    return this.http.post<UserDTO>(this.backendUrl, userDto)
+    return this.http.post<UserDTO>(this.backendUrl, userDto);
+  }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.put<User>(this.backendUrl, user, httpOptions);
   }
 
   login(userNameIn:string, passwordIn:string):Observable<User> {
     let loginDto = {
         userName: userNameIn,
         password: passwordIn
-    }   
+    }
     return this.http.post<any>(this.backendUrl+'/login/',loginDto/*, httpOptions*/ ) as Observable<User>;
   }
-  
+
   logout(): Observable<any> {
     this.user=null;
     return this.http.get(this.backendUrl+'/logout',httpOptions) as Observable<any>;
-  
+
   }
 
   sendLogout(){
