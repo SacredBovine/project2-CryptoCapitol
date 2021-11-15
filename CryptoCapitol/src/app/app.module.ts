@@ -13,11 +13,8 @@ import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './models/globals';
-<<<<<<< HEAD
 import { ProfileComponent } from './components/profile/profile.component';
-=======
 import { NavbarComponent } from './components/navbar/navbar.component';
->>>>>>> master
 
 
 
