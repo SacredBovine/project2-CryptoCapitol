@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { UserService } from './services/user.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +9,8 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'CryptoCapitol';
-  public userService:UserService;
-  constructor (@Inject(UserService) userService:UserService){
+  public userService: UserService;
+  constructor (userService: UserService){
     this.userService = userService;
   };
 }

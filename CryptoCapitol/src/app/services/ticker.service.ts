@@ -31,12 +31,12 @@ export class TickerService {
     return this.http.get<Asset[]>(this.url, { params: params })
   }
 
-  getOneAsset(){
+  getOneAsset(symbol:string){
     // Initialize Params Object
     let params = new HttpParams();
 
     // Begin assigning parameters
-    params = params.append('ids', 'BTC');
+    params = params.append('ids', symbol);
     params = params.append('interval', '1d,7d');
     params = params.append('convert', 'USD');
     params = params.append('per-page', '10');
@@ -46,7 +46,7 @@ export class TickerService {
   }
 
   addOrder(order: Order): Observable<UserBackEnd> {
-      console.log(order.asset.price);
+    
       return this.http.post<UserBackEnd>("http://localhost:8082/crypto/order",order) as Observable<UserBackEnd>;
     }
 

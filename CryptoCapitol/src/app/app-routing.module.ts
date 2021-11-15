@@ -2,26 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { OrderBuyComponent } from './components/order-buy/order-buy.component';
-import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PastRatesComponent } from './components/past-rates/past-rates.component';
-import { NavAuthService } from './services/nav-auth.service';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
-// {
-//   path: '',
-//   component: HomeComponent
-// },
   {
-    path: 'order',
-    canActivate: [NavAuthService],
-    component: OrderBuyComponent
+    path: '',
+    component: HomeComponent
   },
   {
-    path: 'home',
-    canActivate: [NavAuthService],
-    component: HomeComponent
+    path: 'buy',
+    component: OrderBuyComponent
   },
   {
     path: 'login',
@@ -29,7 +22,6 @@ const routes: Routes = [
   },
   {
     path: 'history',
-    canActivate: [NavAuthService],
     component: PastRatesComponent
   },
   {

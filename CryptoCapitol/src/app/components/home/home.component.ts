@@ -1,9 +1,8 @@
 
-import { Component, OnInit, Inject, Renderer2, ElementRef  } from '@angular/core';
+import { Component, OnInit, Inject, Renderer2  } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { TickerService } from 'src/app/services/ticker.service';
 import { DOCUMENT } from '@angular/common';
-import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -16,14 +15,10 @@ export class HomeComponent implements OnInit {
   assets:Asset[] = [];
   visibility:boolean[] = [];
 
-  constructor(private tickerService:TickerService, 
-    @Inject(DOCUMENT) private _document:Document, 
-    private _renderer2: Renderer2, 
-    private userService:UserService) { }
+  constructor(private tickerService:TickerService, @Inject(DOCUMENT) private _document:Document, private _renderer2: Renderer2) { }
 
 
   ngOnInit(): void {
-   // console.log(this.userService.user);
     this.getAssets();
     this.fillVisibility();
     let script = this._renderer2.createElement('script');
@@ -58,4 +53,5 @@ export class HomeComponent implements OnInit {
     obj[newKey] = obj[oldKey];
     delete obj[oldKey];
   }
+
 }

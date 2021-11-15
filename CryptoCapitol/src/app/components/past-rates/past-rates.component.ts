@@ -1,10 +1,9 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Rate } from 'src/app/models/rate';
 import { PastRatesService } from 'src/app/services/past-rates.service';
 import { Color, Label } from 'ng2-charts';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -75,11 +74,10 @@ export class PastRatesComponent implements OnInit {
   ];  
 
 
-  constructor(private pastRates:PastRatesService, 
-    private route: ActivatedRoute,
-    private userService:UserService) { }
+  constructor(private pastRates:PastRatesService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
     this.route.queryParams
       .subscribe(params => {
         this.symbol = params.symbol;
@@ -117,5 +115,6 @@ export class PastRatesComponent implements OnInit {
   chartHovered({ event, active }: { event?: MouseEvent|undefined, active?: {}[]|undefined }): void {
     console.log(event, active);
   }
+
 
 }

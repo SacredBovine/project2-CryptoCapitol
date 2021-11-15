@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderBuyComponent } from './components/order-buy/order-buy.component';
 import { PastRatesComponent } from './components/past-rates/past-rates.component';
@@ -13,6 +12,8 @@ import { ChartsModule } from 'ng2-charts';
 import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
+import { Globals } from './models/globals';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -35,7 +36,7 @@ import { FormsModule } from '@angular/forms';
     ChartsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [Globals],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
