@@ -33,6 +33,10 @@ export class UserService {
     return this.http.put<User>(this.backendUrl, user, httpOptions);
   }
 
+  updateUserState(user: User) {
+    this.user = user;
+  }
+
   login(userNameIn:string, passwordIn:string):Observable<User> {
     let loginDto = {
         userName: userNameIn,

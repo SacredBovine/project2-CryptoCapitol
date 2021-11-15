@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
-import { UserDTO } from 'src/app/models/user-dto';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -34,7 +33,9 @@ export class ProfileComponent implements OnInit {
   onSubmit(form: any, formData: any) {
     console.log('submitting...');
     console.log(formData);
-    this.userService.updateUser(formData).subscribe((response) => console.log(response));
-    form.reset();
+    this.userService
+      .updateUser(formData)
+      .subscribe(() => this.userService.updateUserState(formData));
+      this.editProfile = false;
   }
 }
