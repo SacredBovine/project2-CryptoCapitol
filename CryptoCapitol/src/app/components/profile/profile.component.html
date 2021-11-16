@@ -1,13 +1,13 @@
 <div class="container" *ngIf="userService.loggedInStatus">
   <div *ngIf="!editProfile; else Edit">
-    <h3>Profile</h3>
+    <h3><i class='bx bxs-user-detail'></i> Profile</h3>
     <div class="user-profile">
       <p class="profile-line">{{ userService.user?.firstName }} {{ userService.user?.lastName }}</p>
       <p>{{ userService.user?.email }}</p>
     </div>
     <button
       type="button"
-      class="btn btn-primary toggle-edit"
+      class="btn btn-outline-secondary toggle-edit"
       id="btn-edit"
       (click)="onToggle()"
     >
@@ -58,14 +58,14 @@
           >Please enter a valid email</span
         >
       </div>
-      <button type="submit" class="btn btn-primary submit-button" [disabled]="!formDemo.valid">
+      <button type="submit" class="btn btn-outline-secondary submit-button" [disabled]="!formDemo.valid">
         Submit New Profile
       </button>
       </div>
     </form>
     <button
       type="button"
-      class="btn btn-secondary toggle-edit"
+      class="btn btn-outline-secondary toggle-edit"
       id="btn-cancel"
       (click)="onToggle()"
     >
