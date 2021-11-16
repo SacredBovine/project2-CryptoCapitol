@@ -1,0 +1,75 @@
+<div class="container" *ngIf="userService.loggedInStatus">
+  <div *ngIf="!editProfile; else Edit">
+    <h3>Profile</h3>
+    <div class="user-profile">
+      <p class="profile-line">{{ userService.user?.firstName }} {{ userService.user?.lastName }}</p>
+      <p>{{ userService.user?.email }}</p>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary toggle-edit"
+      id="btn-edit"
+      (click)="onToggle()"
+    >
+      Edit Profile
+    </button>
+  </div>
+  <ng-template #Edit>
+    <h3>Edit Your Profile</h3>
+    <form
+    #formDemo="ngForm"
+    class="form-register"
+    (ngSubmit)="onSubmit(formDemo, userData)"
+  >
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        id="firstName"
+        [(ngModel)]="userData.firstName"
+        required
+      />
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="lastName"
+        id="lastName"
+        [(ngModel)]="userData.lastName"
+        required
+      />
+      <label for="email">Email Address</label>
+      <div>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
+          [(ngModel)]="userData.email"
+          #email="ngModel"
+          required
+        />
+        <span
+          class="help-block"
+          *ngIf="!email.valid && email.touched"
+          >Please enter a valid email</span
+        >
+      </div>
+      <button type="submit" class="btn btn-primary submit-button" [disabled]="!formDemo.valid">
+        Submit New Profile
+      </button>
+      </div>
+    </form>
+    <button
+      type="button"
+      class="btn btn-secondary toggle-edit"
+      id="btn-cancel"
+      (click)="onToggle()"
+    >
+      Cancel
+    </button>
+  </ng-template>
+</div>

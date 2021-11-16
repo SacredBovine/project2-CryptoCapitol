@@ -13,6 +13,7 @@ import { NewsComponent } from './components/news/news.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './models/globals';
+import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { PorfolioComponent } from './components/porfolio/porfolio.component';
@@ -32,7 +33,8 @@ import { OrderSellComponent } from './components/order-sell/order-sell.component
     RegisterComponent,
     OrdersComponent,
     PorfolioComponent,
-    OrderSellComponent
+    OrderSellComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -65,6 +65,7 @@
             type="email"
             class="form-control"
             name="email"
+            pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
             id="email"
             [(ngModel)]="userData.email"
             #email="ngModel"
