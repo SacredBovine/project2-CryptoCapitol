@@ -14,6 +14,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { Globals } from './models/globals';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { PorfolioComponent } from './components/porfolio/porfolio.component';
+import { OrderSellComponent } from './components/order-sell/order-sell.component';
 
 
 
@@ -26,7 +29,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     OrderBuyComponent,
     PastRatesComponent,
     NewsComponent,
-    RegisterComponent
+    RegisterComponent,
+    OrdersComponent,
+    PorfolioComponent,
+    OrderSellComponent
   ],
   imports: [
     BrowserModule,

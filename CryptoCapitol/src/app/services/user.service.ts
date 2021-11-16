@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Globals } from '../models/globals';
 import { User } from '../models/user';
+import { UserBackEnd } from '../models/user-back-end';
 import { UserDTO } from '../models/user-dto';
 
 const httpOptions = {
@@ -20,13 +22,17 @@ export class UserService {
   public user:User|null;
   public loggedInStatus:boolean = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private globals: Globals) {
     this.user = null;
     this.loggedInStatus = false
   }
 
   addUser(userDto: UserDTO): Observable<any> {
     return this.http.post<UserDTO>(this.backendUrl, userDto)
+  }
+
+  getUser(){
+    return this.http.get<UserBackEnd>(this.backendUrl + "/" + this.user?.userId) as Observable<UserBackEnd>
   }
 
   login(userNameIn:string, passwordIn:string):Observable<User> {
@@ -40,6 +46,8 @@ export class UserService {
   logout(): Observable<any> {
     this.user=null;
     this.loggedInStatus= false;
+    this.globals.loggedIn=false;
+    this.globals.userName = '';
     return this.http.get(this.backendUrl+'/logout',httpOptions) as Observable<any>;
   }
 

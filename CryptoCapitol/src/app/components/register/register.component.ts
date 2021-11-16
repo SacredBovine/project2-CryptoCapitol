@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   userData = new UserDTO('', '', '', '', '');
-
+  resultClass:string = "hidden";
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
@@ -20,6 +20,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(user: UserDTO) {
-    this.userService.addUser(user).subscribe();
+    this.userService.addUser(user).subscribe(
+      (response)=>{
+        this.resultClass = "puff-in-center";
+      }
+    );
   }
 }

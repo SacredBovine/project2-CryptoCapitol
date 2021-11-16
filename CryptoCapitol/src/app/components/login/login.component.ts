@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   public username: string ="";
   public password: string="";
   public fail: boolean = false;
+  public success:boolean = false;
 
   constructor(private userService:UserService , private globals: Globals) { }
 
@@ -29,6 +30,8 @@ export class LoginComponent implements OnInit {
         this.userService.user=data;
         this.userService.loggedInStatus = true;
         this.globals.loggedIn = true;
+        this.globals.userName = this.userService.user.userName;
+        this.success = true;
       },
       (error)=>{
         this.fail = true;

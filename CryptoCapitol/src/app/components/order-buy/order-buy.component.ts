@@ -21,8 +21,8 @@ export class OrderBuyComponent implements OnInit {
   investment : number =0;
   assets:Asset[]=[];
   asset!:Asset;
-  assetB:AssetBackEnd|null=null  ;
-  order:Order|null=null ;
+  assetB:AssetBackEnd|null=null;
+  order:Order|null=null;
   ordersBackEnd: OrderBackEnd[] = [];
   resultClass:string = "hidden";
   isdisable:boolean = false;
@@ -49,6 +49,9 @@ export class OrderBuyComponent implements OnInit {
 
 
   getInfoAsset() {
+    if(!this.symbol){
+      return;
+    }
     this.tickerService.getOneAsset(this.symbol).subscribe(
       (response:Asset[])=>{
         

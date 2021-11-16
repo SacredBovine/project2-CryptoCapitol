@@ -1,21 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-9">
       <div class="mb-3">
         <label   for="username">Username</label>
         <input class="form-control" id="username" name="username" type="string" [(ngModel)]="username">
       </div>
-      <div class="mb-3">
-        <label class="col-sm-2" for="password">Password</label>
+      <div class="mb-5">
+        <label for="password">Password</label>
         <input class="form-control" id="password" name="password" type="password" [(ngModel)]="password">
       </div>
       <div class="mb-3">
-        <button class="btn btn-primary" (click)="login()">Login</button>
+        <button [disabled]="success" class="btn btn-outline-secondary" style="width: 100%;" (click)="login()">Login</button>
       </div>
       <div>
         <div class="alert alert-danger" role="alert" *ngIf="fail">
             Username or Password incorrect. Please try again.
         </div>
+        <div *ngIf="success">
+           <span style="color:green;cursor: pointer;" data-bs-dismiss="offcanvas"><i class='bx bx-check-circle' ></i> Logged in</span> 
+      </div>
     </div>
   </div>
 </div>

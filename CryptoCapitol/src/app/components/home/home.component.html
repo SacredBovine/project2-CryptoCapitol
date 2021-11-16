@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="mb-5">Live Cryptocurrency Prices</h3>
+            <h3 class="mb-5"><i class='bx bx-pulse' ></i> Live Cryptocurrency Prices</h3>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -31,12 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let asset of assets; let rowIndex=index" (mouseover)="visibility[rowIndex]=false;" (mouseout)="visibility[rowIndex]=true;">
+                    <tr *ngFor="let asset of assets; let rowIndex=index" (mouseover)="toggleMouseOver(rowIndex)" (mouseout)="toggleMouseOut(rowIndex)">
                         <td class="assetLogo"><img [src]="asset.logo_url" height="20px" alt=""></td>
                         <td> <a  [routerLink]="['/history']" [queryParams]="{symbol:asset.symbol}"> {{asset.name}} {{asset.symbol}} </a> </td>
                         <td>
-                            <ul class="list-group list-group-horizontal">
-                                <li class="list-group-item list-group-item-action"><a [routerLink]="['/buy']" [hidden]="visibility[rowIndex]" [queryParams]="{symbol:asset.symbol}"> Buy</a></li>
+                            <ul class="list-group list-group-horizontal" [hidden]="visibility[rowIndex]">
+                                <li class="list-group-item list-group-item-action"><a [routerLink]="['/buy']"  [queryParams]="{symbol:asset.symbol}"> Buy</a></li>
                             </ul>
                         </td>
                         <td class="tdr">
@@ -70,12 +70,3 @@
 <div style="height: 100px;">
 
 </div>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">Login</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <app-login></app-login>
-    </div>
-  </div>

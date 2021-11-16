@@ -8,10 +8,7 @@
 </header>
 
 <section id="content" class="mt-5">
-
 <router-outlet></router-outlet>
-
-
 </section>
 <footer class="mt-5">     
         <div class="container">
@@ -22,3 +19,12 @@
             </div>
         </div>
     </footer>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel">Log in to Crypto Capitol</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <app-login></app-login>
+      </div>
+    </div>

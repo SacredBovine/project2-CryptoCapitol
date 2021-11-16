@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>{{symbol}} Price History</h3>
-            <p>Last 30 days</p>
+            <h3><i class='bx bx-line-chart' ></i> {{asset?.name}} {{symbol}} Price History</h3>
+            <p class="mt-3">Last 30 days</p>
             <div class="chartjs-container mt-5">
                 <canvas baseChart 
                     [datasets]="lineChartData" 
@@ -21,6 +21,27 @@
                 </canvas>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+<h4 class="mt-5">{{symbol}} Price Statistics</h4>
+<ul class="list-group mt-3">
+    <li class="list-group-item">Rank <b>{{asset?.rank}}</b></li>
+    <li class="list-group-item mt-3">
+        Current price <b>{{asset?.price | currency}}</b>
+    </li>
+    <li class="list-group-item mt-3">
+        1M low <b>{{min | currency}}</b>
+    </li>
+    <li class="list-group-item mt-3">
+        1M high <b>{{max | currency}}</b>
+    </li>
+    <li class="list-group-item mt-3">
+        1M volume comming soon
+    </li>
+</ul>
+        </div>
+
     </div>
 </div>
 <div style="height: 100px;">

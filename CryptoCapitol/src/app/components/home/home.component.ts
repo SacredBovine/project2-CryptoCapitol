@@ -3,6 +3,7 @@ import { Component, OnInit, Inject, Renderer2  } from '@angular/core';
 import { Asset } from 'src/app/models/asset';
 import { TickerService } from 'src/app/services/ticker.service';
 import { DOCUMENT } from '@angular/common';
+import { Globals } from 'src/app/models/globals';
 
 
 @Component({
@@ -14,8 +15,10 @@ export class HomeComponent implements OnInit {
 
   assets:Asset[] = [];
   visibility:boolean[] = [];
-
-  constructor(private tickerService:TickerService, @Inject(DOCUMENT) private _document:Document, private _renderer2: Renderer2) { }
+  globals: Globals;
+  constructor(private tickerService:TickerService, @Inject(DOCUMENT) private _document:Document, private _renderer2: Renderer2, globals: Globals) { 
+    this.globals = globals;
+  }
 
 
   ngOnInit(): void {
@@ -52,6 +55,18 @@ export class HomeComponent implements OnInit {
   renameKey ( obj:any, oldKey:string, newKey:string ) {
     obj[newKey] = obj[oldKey];
     delete obj[oldKey];
+  }
+
+  toggleMouseOver(rowIndex:number){
+    if(this.globals.loggedIn){
+      this.visibility[rowIndex]=false;
+    }
+    
+  }
+  toggleMouseOut(rowIndex:number){
+    if(this.globals.loggedIn){
+      this.visibility[rowIndex]=true;
+    }
   }
 
 }

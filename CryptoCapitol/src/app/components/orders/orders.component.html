@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3><i class='bx bx-dollar-circle'></i> My crypto orders</h3>
+            <table class="table table-hover mt-5">
+                <thead>
+                    <tr>
+                        <td>
+                            Asset
+                        </td>
+                        <td>
+                            Order type
+                        </td>
+                        <td class="tdr">
+                            Quantity
+                        </td>
+                        <td class="tdr">
+                            Asset price
+                        </td>
+                        <td class="tdr">
+                            Total invested
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orders">
+                        <td>
+                            {{order.asset.name}} {{order.asset.symbol}}
+                        </td>
+                        <td>
+                            {{order.typeOrder==1?"Buy":"Sell"}}
+                        </td>
+                        <td class="tdr">
+                            {{order.quantity | number}} {{order.asset.symbol}}
+                        </td>
+                        <td class="tdr">
+                            {{order.price | currency}}
+                        </td>
+                        <td class="tdr">
+                            {{(order.price * order.quantity) | currency}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

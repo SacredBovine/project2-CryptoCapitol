@@ -4,6 +4,8 @@ import { Rate } from 'src/app/models/rate';
 import { PastRatesService } from 'src/app/services/past-rates.service';
 import { Color, Label } from 'ng2-charts';
 import { ActivatedRoute } from '@angular/router';
+import { Asset } from 'src/app/models/asset';
+import { TickerService } from 'src/app/services/ticker.service';
 
 
 @Component({
@@ -15,6 +17,10 @@ export class PastRatesComponent implements OnInit {
 
   rates:Rate[] = []
   data:number[] = []
+  min:number = 0;
+  max:number = 0;
+  assets:Asset[]=[];
+  asset!:Asset;
   symbol:string =''
   lineChartData: ChartDataSets[] = [
     { data: this.data, label: 'USD' }
@@ -74,7 +80,7 @@ export class PastRatesComponent implements OnInit {
   ];  
 
 
-  constructor(private pastRates:PastRatesService, private route: ActivatedRoute) { }
+  constructor(private pastRates:PastRatesService, private route: ActivatedRoute, private tickerService:TickerService) { }
 
   ngOnInit(): void {
 
@@ -84,6 +90,7 @@ export class PastRatesComponent implements OnInit {
       }
     );
     this.loadPastRates();
+    this.getInfoAsset();
   }
 
   loadPastRates(){
@@ -98,7 +105,14 @@ export class PastRatesComponent implements OnInit {
   }
 
   populateData(rates:Rate[]){
+    this.min =  rates[0].rate_close;
     for(let rate of rates){
+      if(rate.rate_close > this.max){
+        this.max = rate.rate_close;
+      }
+      if(rate.rate_close < this.min){
+        this.min = rate.rate_close;
+      }
       this.data.push(rate.rate_close);
       this.lineChartLabels.push(rate.time_period_start.substr(0,10));
       console.log(rate.time_period_start.substr(0,10));
@@ -106,7 +120,22 @@ export class PastRatesComponent implements OnInit {
     
   }
 
-
+  getInfoAsset() {
+    if(!this.symbol){
+      return;
+    }
+    this.tickerService.getOneAsset(this.symbol).subscribe(
+      (response:Asset[])=>{
+        
+        this.renameKey(response[0],'1d', 'd1' ) ;
+        this.renameKey(response[0],'7d', 'd7' ) ;
+        this.assets = response;
+        console.log(this.assets[0].name);
+        console.log(this.assets[0].logo_url);
+        this.asset=this.assets[0];
+      }
+    )
+  }
   // events
   chartClicked({ event, active }: { event?: MouseEvent|undefined, active?: {}[] |undefined }): void {
     console.log(event, active);
@@ -116,5 +145,9 @@ export class PastRatesComponent implements OnInit {
     console.log(event, active);
   }
 
+  renameKey ( obj:any, oldKey:string, newKey:string ) {
+    obj[newKey] = obj[oldKey];
+    delete obj[oldKey];
+  }
 
 }

@@ -1,8 +1,7 @@
-<div class="container" *ngIf="userService.loggedInStatus; else Login">
+<div class="container">
     <div class="row">
-        <h3 class="mb-5"><i class='bx bx-shopping-bag'></i> Buy Crypto</h3>
+        <h3 class="mb-5"><i class='bx bx-money' ></i> Sell Crypto</h3>
         <div class="col-md-4">
-            
             <ul class="list-group">
                 <li class="list-group-item">
                     <img [src]="asset?.logo_url" height="20px" alt="" /> {{asset?.name}} {{asset?.symbol}}
@@ -10,33 +9,34 @@
                 <li class="list-group-item">
                     Current price: <b>{{asset?.price | currency}}</b>
                 </li>
+                <li class="list-group-item">
+                    Available to sell: <b>{{availability | number}} {{asset?.symbol}}</b>
+                </li>
             </ul> 
-
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item">
-                        <label for="txtInvest">You invest</label>
-                        <input type="number" min="0" style="width: 250px;" (change)="updateQuantity()"  (keypress)="updateQuantity()" class="form-control" id="txtInvest" [(ngModel)]="investment"></li>
-                    <li class="list-group-item ps-0"><br>USD</li>
+                        <label for="txtInvest">You Sell</label>
+                        <input type="number" min="0" style="width: 250px;" (change)="updateReturn()"  (keypress)="updateReturn()" class="form-control" id="txtInvest" [(ngModel)]="quantity"></li>
+                    <li class="list-group-item ps-0"><br>{{asset?.symbol}}</li>
                 </ul>
                 
             </div>
             <div class="mb-3">                
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item">
-                        <label for="txtInvest">Quantity</label>
-                        <input type="text" style="width: 250px;" class="form-control" readonly id="txtQuantity" placeholder="0" [(ngModel)]="quantity"></li>
-                    <li class="list-group-item ps-0"><br>{{asset?.symbol}}</li>
+                        <label for="txtInvest">Your return</label>
+                        <input type="text" style="width: 250px;" class="form-control" readonly id="txtReturn" placeholder="0" [(ngModel)]="returnUSD"></li>
+                    <li class="list-group-item ps-0"><br>USD</li>
                 </ul>
             </div>
          
                 <div class="d-grid gap-2 mt-5 ms-3">
-                    <button type="submit" [disabled]="isdisable"  style="width: 250px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class=" btn mybtn btn-outline-secondary tx-tfm" id="btnBuy">Buy {{asset?.symbol}}</button>
+                    <button type="submit" [disabled]="isdisable"  style="width: 250px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop" class=" btn mybtn btn-outline-secondary tx-tfm" id="btnBuy">Sell {{asset?.symbol}}</button>
                  </div>
-            
         </div>
         <div class="col-md-3">
             <div id="newSuccess" [ngClass]="resultClass">
@@ -59,11 +59,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          Do you want to buy {{quantity}} {{asset?.symbol}} for ${{investment}}?
+          Do you want to sell {{quantity}} {{asset?.symbol}} for {{returnUSD | currency}}?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-outline-success" (click)="buyAsset()" data-bs-dismiss="modal">Buy now</button>
+          <button type="button" class="btn btn-outline-success" (click)="sellAsset()" data-bs-dismiss="modal">Sell now</button>
         </div>
       </div>
     </div>
