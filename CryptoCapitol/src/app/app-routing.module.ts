@@ -4,6 +4,7 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderBuyComponent } from './components/order-buy/order-buy.component';
 import { RegisterComponent } from './components/register/register.component';
 import { PastRatesComponent } from './components/past-rates/past-rates.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 
 
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   }
 ];
 

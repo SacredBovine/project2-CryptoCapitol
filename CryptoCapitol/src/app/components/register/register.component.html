@@ -29,7 +29,6 @@
         name="password"
         id="password"
         [(ngModel)]="userData.password"
-
         pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
         required
       />
@@ -41,7 +40,7 @@
         <p class="password-criteria">At least one numeral</p>
         <p>At least one special character</p>
       </div>
-      <label for="username">First Name</label>
+      <label for="firstName">First Name</label>
       <input
         type="text"
         class="form-control"
@@ -66,6 +65,7 @@
           class="form-control"
           name="email"
           id="email"
+          pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
           [(ngModel)]="userData.email"
           #email="ngModel"
           required
