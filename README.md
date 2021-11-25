@@ -4,6 +4,10 @@
 
 CryptoCapitol is an online crypto currency tracker and mock trade system. User will be able to view current and historical data for crypto-currencies. Users can also conduct mock trades to see how well a holding would perform.
 
+## Demo Example GIF
+
+<img src="https://github.com/SacredBovine/project2-Backend/blob/master/demoP2.gif" width=850><br>
+
 ## Technologies Used
 
 * Java
